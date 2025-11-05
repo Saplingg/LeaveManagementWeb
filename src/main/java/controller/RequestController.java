@@ -23,7 +23,6 @@ import java.util.List;
  *
  * @author Acer
  */
-@WebServlet("/request/*")
 public class RequestController extends HttpServlet {
 
     private RequestDAO requestDAO;

@@ -5,7 +5,7 @@
    version="6.0">
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>com.company.filter.AuthenticationFilter</filter-class>
+        <filter-class>filter.AuthenticationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
@@ -15,7 +15,7 @@
 
     <filter>
         <filter-name>AuthzFilter</filter-name>
-        <filter-class>com.company.filter.AuthorizationFilter</filter-class>
+        <filter-class>filter.AuthorizationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthzFilter</filter-name>
@@ -24,20 +24,20 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.company.controller.LoginServlet</servlet-class>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>RequestServlet</servlet-name>
-        <servlet-class>com.company.controller.RequestServlet</servlet-class>
+        <servlet-name>RequestController</servlet-name>
+        <servlet-class>controller.RequestController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RequestServlet</servlet-name>
+        <servlet-name>RequestController</servlet-name>
         <url-pattern>/request/*</url-pattern>
     </servlet-mapping>
     

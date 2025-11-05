@@ -14,13 +14,13 @@
 
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="com.company.model.User"/>
-        <mapping class="com.company.model.Role"/>
-        <mapping class="com.company.model.Feature"/>
-        <mapping class="com.company.model.Employee"/>
-        <mapping class="com.company.model.Division"/>
-        <mapping class="com.company.model.Enrollment"/>
-        <mapping class="com.company.model.RequestForLeave"/>
-        <mapping class="com.company.model.RequestHistory"/>
+        <mapping class="model.User"/>
+        <mapping class="model.Role"/>
+        <mapping class="model.Feature"/>
+        <mapping class="model.Employee"/>
+        <mapping class="model.Division"/>
+        <mapping class="model.Enrollment"/>
+        <mapping class="model.RequestForLeave"/>
+        <mapping class="model.RequestHistory"/>
         </session-factory>
 </hibernate-configuration>
