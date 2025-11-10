@@ -78,8 +78,8 @@ List<RequestForLeave> leaves = requestDAO.getApprovedLeaveForEmployees(employeeI
         // Map<EmployeeID, Set<NgàyNghỉ>>
         Map<Integer, Set<LocalDate>> leaveMap = new HashMap<>();
         for (RequestForLeave leave : leaves) {
-            LocalDate leaveStart = leave.getFromDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate leaveEnd = leave.getToDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate leaveStart = ((java.sql.Date) leave.getFromDate()).toLocalDate();
+            LocalDate leaveEnd = ((java.sql.Date) leave.getToDate()).toLocalDate();
 
             // Lấy tất cả các ngày trong khoảng nghỉ
             for (LocalDate date = leaveStart; !date.isAfter(leaveEnd); date = date.plusDays(1)) {

@@ -66,7 +66,7 @@
                     <th>Nhân sự</th>
                     <c:forEach var="date" items="${requestScope.dateRange}">
                         <th class="date-header">
-                            <fmt:formatDate value="${date}" pattern="dd/MM"/>
+                            <fmt:formatNumber value="${date.dayOfMonth}" minIntegerDigits="2"/>/<fmt:formatNumber value="${date.monthValue}" minIntegerDigits="2"/>
                         </th>
                     </c:forEach>
                 </tr>

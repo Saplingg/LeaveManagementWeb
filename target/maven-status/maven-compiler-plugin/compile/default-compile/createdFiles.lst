@@ -10,8 +10,11 @@ util\HibernateUtil.class
 controller\LoginController.class
 model\Role.class
 model\Feature.class
+controller\DivisionController.class
 dao\UserDAO.class
 model\Employee.class
+controller\LogoutController.class
+dao\EmployeeDAO.class
 dao\RequestDAO.class
 model\RequestForLeave.class
 filter\AuthorizationFilter.class

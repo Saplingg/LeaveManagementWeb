@@ -131,4 +131,20 @@ public class RequestDAO {
             return Collections.emptyList();
         }
     }
+    /**
+     * Lấy tất cả các đơn của 1 Division (dành cho Division Leader)
+     */
+    public List<RequestForLeave> getRequestsByDivisionId(int did) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM RequestForLeave r WHERE r.createdBy.division.did = :did " +
+                            "ORDER BY r.status ASC, r.createdTime DESC",
+                            RequestForLeave.class)
+                    .setParameter("did", did)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return java.util.Collections.emptyList();
+        }
+    }
 }

@@ -8,6 +8,8 @@ import dao.RequestDAO;
 import model.Employee;
 import model.RequestForLeave;
 import model.RequestHistory;
+import model.Role;
+import model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 /**
  *
  * @author Acer
@@ -98,9 +101,32 @@ public class RequestController extends HttpServlet {
     }
 
     private void listRequestsForManager(HttpServletRequest req, HttpServletResponse resp, Employee employee) throws ServletException, IOException {
-        List<RequestForLeave> requests = requestDAO.getRequestsForManager(employee.getEid());
+        
+        // Lấy thông tin user và vai trò từ session
+        User user = (User) req.getSession().getAttribute("user");
+        Set<Role> roles = user.getRoles();
+        
+        boolean isDivisionLeader = false;
+        for (Role r : roles) {
+            // Giả sử 'Division Leader' có rid = 1 (dựa trên DB script của bạn)
+            if (r.getRid() == 1) { 
+                isDivisionLeader = true;
+                break;
+            }
+        }
+
+        List<RequestForLeave> requests;
+        if (isDivisionLeader) {
+            // 1. Nếu là Leader, lấy tất cả đơn trong Division
+            requests = requestDAO.getRequestsByDivisionId(employee.getDivision().getDid());
+            req.setAttribute("pageTitle", "Đơn nghỉ phép (Toàn bộ Division)");
+        } else {
+            // 2. Nếu là Manager, chỉ lấy cấp dưới trực tiếp
+            requests = requestDAO.getRequestsForManager(employee.getEid());
+            req.setAttribute("pageTitle", "Đơn nghỉ phép (Cấp dưới của tôi)");
+        }
+        
         req.setAttribute("requests", requests);
-        req.setAttribute("pageTitle", "Đơn nghỉ phép của cấp dưới");
         req.getRequestDispatcher("/list.jsp").forward(req, resp);
     }
 
