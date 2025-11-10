@@ -22,7 +22,14 @@
         <url-pattern>/request/*</url-pattern>
         <url-pattern>/division/*</url-pattern>
     </filter-mapping>
-
+    <servlet>
+        <servlet-name>DivisionController</servlet-name>
+        <servlet-class>controller.DivisionController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DivisionController</servlet-name>
+        <url-pattern>/division/*</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -31,7 +38,14 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>RequestController</servlet-name>
         <servlet-class>controller.RequestController</servlet-class>

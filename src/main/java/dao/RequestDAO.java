@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.Date;
 import model.RequestForLeave;
 import model.RequestHistory;
 import util.HibernateUtil;
@@ -108,6 +109,26 @@ public class RequestDAO {
             }
             e.printStackTrace();
             return false;
+        }
+    }
+    public List<RequestForLeave> getApprovedLeaveForEmployees(List<Integer> employeeIds, Date from, Date to) {
+        if (employeeIds == null || employeeIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM RequestForLeave r WHERE r.status = 1 " +
+                            "AND r.createdBy.eid IN (:eids) " +
+                            "AND r.fromDate <= :toDate AND r.toDate >= :fromDate",
+                            RequestForLeave.class)
+                    .setParameterList("eids", employeeIds)
+                    .setParameter("fromDate", from)
+                    .setParameter("toDate", to)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
         }
     }
 }

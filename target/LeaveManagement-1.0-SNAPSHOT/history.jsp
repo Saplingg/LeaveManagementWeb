@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
+    
     <div class="container">
         <h2>Lịch sử đơn #${requestScope.request.rid} (Tạo bởi: ${requestScope.request.createdBy.ename})</h2>
         <p>

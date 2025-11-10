@@ -12,18 +12,34 @@
 <head>
     <title>Danh sách đơn nghỉ phép</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <style>
+        /* Thêm style để các nút trên cùng nằm trên 1 hàng */
+        .page-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Khoảng cách giữa các nút */
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+    
     <div class="container">
         <h2>Xin chào, ${sessionScope.user.displayName}</h2>
         
-        <c:if test="${sessionScope.userFeatures.contains('/request/create')}">
-            <a href="${pageContext.request.contextPath}/request/create" class="btn btn-primary">Tạo đơn mới</a>
-        </c:if>
-
-        <c:if test="${sessionScope.userFeatures.contains('/request/list-all')}">
-            <a href="${pageContext.request.contextPath}/request/list-all" class="btn btn-primary">Xem đơn cấp dưới</a>
-        </c:if>
+        <div class="page-actions">
+            <c:if test="${sessionScope.userFeatures.contains('/request/create')}">
+                <a href="${pageContext.request.contextPath}/request/create" class="btn btn-primary">Tạo đơn mới</a>
+            </c:if>
+    
+            <c:if test="${sessionScope.userFeatures.contains('/request/list-all')}">
+                <a href="${pageContext.request.contextPath}/request/list-all" class="btn btn-primary">Xem đơn cấp dưới</a>
+            </c:if>
+    
+            <c:if test="${sessionScope.userFeatures.contains('/division/agenda')}">
+                <a href="${pageContext.request.contextPath}/division/agenda" class="btn btn-primary">Xem Agenda Phòng</a>
+            </c:if>
+        </div>
 
         <h1>${requestScope.pageTitle}</h1>
         <table>

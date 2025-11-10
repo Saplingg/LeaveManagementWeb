@@ -5,7 +5,11 @@
 package model;
 
 import jakarta.persistence.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
+import org.hibernate.Session;
+import util.HibernateUtil;
 
 @Entity
 @Table(name = "Employee")
@@ -84,5 +88,17 @@ public class Employee {
     public void setUser(User user) {
         this.user = user;
     }
-    
+    public List<Employee> getEmployeesByDivision(int divisionId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM Employee e WHERE e.division.did = :did",
+                            Employee.class)
+                    .setParameter("did", divisionId)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
 }
